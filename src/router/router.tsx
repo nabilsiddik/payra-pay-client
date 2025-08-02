@@ -1,15 +1,20 @@
-import App from "@/App"
+import Home from "@/Pages/Home"
+import LoginPage from "@/Pages/LoginPage"
 import SignUpPage from "@/Pages/SignUpPage"
-import { createBrowserRouter } from "react-router"
+import { createBrowserRouter } from "react-router-dom"
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: <Home />,
         children: [
             {
                 path: '/signup',
                 element: <SignUpPage />
+            },
+            {
+                path: '/login',
+                element: <LoginPage/>
             }
         ]
     }

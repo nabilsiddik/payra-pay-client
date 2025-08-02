@@ -1,4 +1,5 @@
 'use client'
+import { Phone } from 'lucide-react';
 import React, { useState } from 'react';
 
 const UserIcon: React.FC = () => (
@@ -56,6 +57,7 @@ const GoogleIcon: React.FC = () => (
 const SignInForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [fullName, setFullName] = useState<string>('');
 
@@ -63,15 +65,28 @@ const SignInForm: React.FC = () => {
         setShowPassword(!showPassword);
     };
 
+    // Register New User
+    const handleUserRegistration = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const userInfo = {
+            fullName,
+            email,
+            phone,
+            password
+        }
+
+        console.log(userInfo)
+    }
+
     return (
         <div>
             <h1 className='font-bold text-center text-3xl mt-10 mb-5'>Crate Payra Pay Account</h1>
             <div className="flex items-center justify-center p-4">
                 <div className="w-full max-w-lg">
                     {/* Main Card */}
-                    <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-8 shadow-sm">
+                    <div className="bg-white dark:bg-black border border-primary dark:border-gray-800 rounded-lg p-8 shadow-sm">
                         {/* Form */}
-                        <form className="space-y-6">
+                        <form onSubmit={handleUserRegistration} className="space-y-6">
                             {/* Full Name Input */}
                             <div className="space-y-2">
                                 <label htmlFor="fullName" className="text-sm font-medium text-gray-900 dark:text-gray-100 block">
@@ -112,6 +127,26 @@ const SignInForm: React.FC = () => {
                                 </div>
                             </div>
 
+                            {/* Phone Input */}
+                            <div className="space-y-2">
+                                <label htmlFor="phone" className="text-sm font-medium text-gray-900 dark:text-gray-100 block">
+                                    Email
+                                </label>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
+                                        <Phone />
+                                    </div>
+                                    <input
+                                        id="phone"
+                                        type="tel"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        placeholder="01957......"
+                                        className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-black px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-950 dark:focus:ring-gray-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50"
+                                    />
+                                </div>
+                            </div>
+
                             {/* Password Input */}
                             <div className="space-y-2">
                                 <label htmlFor="password" className="text-sm font-medium text-gray-900 dark:text-gray-100 block">
@@ -141,12 +176,12 @@ const SignInForm: React.FC = () => {
 
                             {/* Terms checkbox */}
                             <div className="flex items-start space-x-3">
-                                <input
+                                {/* <input
                                     id="terms"
                                     type="checkbox"
                                     className="h-4 w-4 rounded border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-gray-950 dark:focus:ring-gray-300 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black"
-                                />
-                                <label htmlFor="terms" className="text-sm text-gray-600 dark:text-gray-400 leading-5">
+                                /> */}
+                                {/* <label htmlFor="terms" className="text-sm text-gray-600 dark:text-gray-400 leading-5">
                                     I agree to the{' '}
                                     <a href="#" className="font-medium text-gray-900 dark:text-gray-100 underline underline-offset-4 hover:no-underline">
                                         Terms of Service
@@ -155,13 +190,13 @@ const SignInForm: React.FC = () => {
                                     <a href="#" className="font-medium text-gray-900 dark:text-gray-100 underline underline-offset-4 hover:no-underline">
                                         Privacy Policy
                                     </a>
-                                </label>
+                                </label> */}
                             </div>
 
                             {/* Create Account Button */}
                             <button
                                 type="submit"
-                                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gray-900 dark:bg-gray-50 text-gray-50 dark:text-gray-900 hover:bg-gray-900/90 dark:hover:bg-gray-50/90 h-10 px-4 py-2 w-full"
+                                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary dark:bg-gray-50 text-gray-50 dark:text-gray-900 hover:bg-primary dark:hover:bg-gray-50/90 h-10 px-4 py-2 w-full"
                             >
                                 Create account
                             </button>

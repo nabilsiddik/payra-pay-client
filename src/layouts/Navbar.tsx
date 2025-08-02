@@ -85,7 +85,7 @@ export default function Navbar() {
                 {navItems.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <Link key={index} to={`/${item.slug}`}>
+                    <Link key={index} to={item.slug}>
                       <button
                         key={item.name}
                         onClick={() => setActiveTab(item.name)}
