@@ -72,7 +72,7 @@ export default function Navbar() {
   return (
     <div className="mx-4 sm:mx-6 mt-2 font-sans">
       <header className="relative">
-        <div className="bg-primary border border-gray-800 rounded-2xl shadow-2xl p-4 text-white">
+        <div className="bg-primary border border-primary rounded-2xl shadow-2xl p-4 text-white">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Logo and Desktop Navigation */}
             <div className="flex items-center space-x-2 sm:space-x-8">
@@ -107,12 +107,12 @@ export default function Navbar() {
               {/* Mobile Menu Hamburger Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-xl bg-gray-900 border border-gray-700 hover:bg-gray-800 transition-all duration-300"
+                className="lg:hidden p-2 rounded-xl bg-white border border-primary hover:bg-white transition-all duration-300"
               >
                 <div className="w-5 h-5 flex flex-col justify-center items-center">
-                  <div className={`w-4 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-0.5' : ''}`}></div>
-                  <div className={`w-4 h-0.5 bg-white mt-1 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
-                  <div className={`w-4 h-0.5 bg-white mt-1 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+                  <div className={`w-4 h-0.5 bg-primary transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-0.5' : ''}`}></div>
+                  <div className={`w-4 h-0.5 bg-primary  mt-1 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+                  <div className={`w-4 h-0.5 bg-primary  mt-1 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
                 </div>
               </button>
             </div>

@@ -1,6 +1,8 @@
 'use client'
+import axios from 'axios';
 import { Phone } from 'lucide-react';
 import React, { useState } from 'react';
+import Notification from './ui/toast';
 
 const UserIcon: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -66,16 +68,33 @@ const SignInForm: React.FC = () => {
     };
 
     // Register New User
-    const handleUserRegistration = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleUserRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const userInfo = {
-            fullName,
+            name: fullName,
             email,
             phone,
             password
         }
 
-        console.log(userInfo)
+        // Create user in database
+        try {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/register`, userInfo)
+
+            if (res.data.success) {
+                <Notification
+                    type="success"
+                    title="Success!"
+                    message="Operation completed successfully."
+                    showIcon={true}
+                    duration={3000}
+                    onClose={() => console.log('Closed')}
+                />
+            }
+
+        } catch (error: any) {
+            console.log('Error while user registratoin', error)
+        }
     }
 
     return (

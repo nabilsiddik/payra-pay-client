@@ -1,6 +1,7 @@
 
 'use client'
-import React, { useState } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 const UserIcon = () => (
     <svg
@@ -101,11 +102,25 @@ const XIcon = () => (
     </svg>
 );
 
-// --- Main App Component ---
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    // Handle user login
+    const handleUserLogin = async(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const loginInfo = {
+            email,
+            password
+        }
+        try{
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, loginInfo, { withCredentials: true })
+            console.log(res)
+        }catch(error: any){
+            console.log('Error while User login', error)
+        }
+    }
 
     return (
         <div>
@@ -151,7 +166,7 @@ export default function Login() {
                     </div>
 
                     {/* Form - Shadcn style */}
-                    <form className="space-y-4">
+                    <form onSubmit={handleUserLogin} className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-zinc-900 dark:text-zinc-50 block mb-2">
                                 Email
